@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: moodtune-backend
+    env: node
+    buildCommand: npm install && npm run build:esbuild
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        fromDatabase:
+          name: moodtune-db
+          property: connectionString
