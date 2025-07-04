@@ -13,7 +13,12 @@ const app = express();
 // CORS configuration
 app.use(cors({
   origin: process.env.NODE_ENV === "production" 
-    ? process.env.CLIENT_URL || "https://your-client-app.onrender.com"
+    ? [
+        process.env.CLIENT_URL || "https://mood-tune.vercel.app",
+        "https://mood-tune.vercel.app",
+        // Allow any vercel.app domain for flexibility
+        /\.vercel\.app$/
+      ]
     : "http://localhost:5173",
   credentials: true
 }));
